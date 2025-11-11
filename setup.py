@@ -492,6 +492,9 @@ setup(
     keywords='computer vision',
     packages=find_packages(),
     include_package_data=True,
+    package_data={
+        '': ['*.pyd', '*.so'],
+    },
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: Apache Software License',
