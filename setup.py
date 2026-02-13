@@ -2,7 +2,7 @@ import glob
 import os
 import platform
 import re
-from pkg_resources import DistributionNotFound, get_distribution, parse_version
+from importlib.metadata import version as parse_version, PackageNotFoundError
 from setuptools import find_packages, setup
 
 EXT_TYPE = ''
@@ -33,8 +33,8 @@ def choose_requirement(primary, secondary):
     return secondary."""
     try:
         name = re.split(r'[!<>=]', primary)[0]
-        get_distribution(name)
-    except DistributionNotFound:
+        parse_version(name)
+    except PackageNotFoundError:
         return secondary
 
     return str(primary)
